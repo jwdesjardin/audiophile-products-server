@@ -32,7 +32,7 @@ model Product {
   mainImageTablet      String           @db.VarChar(255)
   mainImageDesktop     String           @db.VarChar(255)
   price                Int
-  slug                 String           @unique
+  slug                 String           
   new                  Boolean          @default(false)
   recommendations      Recommendation[]
   includedItems        IncludedItem[]
@@ -60,9 +60,12 @@ model IncludedItem {
 }
 
 model Recommendation {
-  id                 Int      @id @default(autoincrement())
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
-  recommendedproduct Product  @relation(fields: [recommendedId], references: [id])
-  recommendedId      Int
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @db.VarChar(255)
+  image     String   @db.VarChar(255)
+  slug      String   @db.VarChar(255)
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId Int?
 }
