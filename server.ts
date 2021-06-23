@@ -1,7 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import mysql from 'mysql'
 
 dotenv.config()
 
@@ -13,68 +12,9 @@ express.json()
 
 app.use(cors())
 
-// PG
-
-import { Pool } from 'pg'
-
-const pool = new Pool({
-	user: 'postgres',
-	host: 'localhost',
-	database: 'audiophile_products',
-	password: 'dubesdub86',
-	port: 5432,
-})
-
-const text = 'INSERT INTO person(name, email) VALUES($1, $2) RETURNING *'
-const values = ['brianc', 'brian.m.carlson@gmail.com']
-
-// pool.connect().then((client) => {
-// 	return client
-// 		.query('CREATE TABLE person (name varchar(255), email varchar(255))')
-// 		.then((res) => {
-// 			client.release()
-// 			console.log(res.rows[0])
-// 		})
-// 		.catch((err) => {
-// 			client.release()
-// 			console.log(err.stack)
-// 		})
-// })
-pool.connect().then((client) => {
-	return client
-		.query(text, values)
-		.then((res) => {
-			client.release()
-			console.log(res.rows[0])
-		})
-		.catch((err) => {
-			client.release()
-			console.log(err.stack)
-		})
-})
-
-// MYSQL
-
-// const con = mysql.createConnection({
-// 	host: 'localhost',
-// 	user: 'jwd',
-// 	password: 'wsw848',
-// 	database: 'audiophile_products',
-// })
-
-// con.connect(function (err) {
-// 	if (err) throw err
-// 	console.log('Connected!')
-// 	var sql = 'CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))'
-// 	con.query(sql, function (err, result) {
-// 		if (err) throw err
-// 		console.log('Table created')
-// 	})
-// })
-
 app.get('/', (req, res) => {
 	try {
-		res.send('Welcome to the NHL Stats API')
+		res.send('Welcome to the API')
 	} catch (error) {
 		console.log('error getting team standings')
 	}
