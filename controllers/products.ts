@@ -6,6 +6,10 @@ export const getProductsById = asyncHandler(async (req, res) => {
   const product = await prisma.product.findUnique({
     where: {
       id: id
+    }, 
+    include: {
+      recommendations: true,
+      includedItems: true
     }
   })
   if (product) {

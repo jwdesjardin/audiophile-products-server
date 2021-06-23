@@ -8,10 +8,10 @@
 
     "strict": true,
 
-    "lib": ["esnext"],
+    "lib": ["esnext", "DOM"],
 
-    "esModuleInterop": true
-
+    "esModuleInterop": true,
+		"resolveJsonModule": true
   }
 
 }
