@@ -44,3 +44,12 @@
 [] mongoDB ( on GCP )?
 
 [] firebase
+
+## 6/23
+
+[] build products api locally ( prisma, typeorm )
+[] use local pdadmin database
+
+[] build using containers locally
+
+[] build using containers on gcp
