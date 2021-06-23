@@ -1,4 +1,4 @@
-import  prisma  from '../prisma';
+import  {prisma}  from '../prismaClient';
 import asyncHandler from 'express-async-handler';
 
 export const getProductsById = asyncHandler(async (req, res) => {

@@ -32,7 +32,7 @@ model Product {
   mainImageTablet      String           @db.VarChar(255)
   mainImageDesktop     String           @db.VarChar(255)
   price                Int
-  slug                 String           
+  slug                 String           @unique
   new                  Boolean          @default(false)
   recommendations      Recommendation[]
   includedItems        IncludedItem[]
@@ -64,7 +64,9 @@ model Recommendation {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String   @db.VarChar(255)
-  image     String   @db.VarChar(255)
+  imageMobile     String   @db.VarChar(255)
+  imageTablet     String   @db.VarChar(255)
+  imageDesktop     String   @db.VarChar(255)
   slug      String   @db.VarChar(255)
   Product   Product? @relation(fields: [productId], references: [id])
   productId Int?
