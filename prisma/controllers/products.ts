@@ -15,3 +15,40 @@ export const getProductsById = asyncHandler(async (req, res) => {
 		throw new Error('Product not found');
 	}
 })
+
+export const getCategoryById = asyncHandler(async (req, res) => {
+  const id = parseInt(req.params.id);
+  const category = await prisma.category.findUnique({
+    where: {
+      id: id
+    }
+  })
+  if (category) {
+		res.json(category);
+	} else {
+		res.status(404);
+		throw new Error('Category not found');
+	}
+})
+
+export const getCategorySlugs = asyncHandler(async (req, res) => {
+  const categories = await prisma.category.findMany()
+  if (categories) {
+    const slugs = categories.map(category => category.id)
+		res.json(slugs);
+	} else {
+		res.status(404);
+		throw new Error('Category slugs not found');
+	}
+})
+
+export const getProductSlugs = asyncHandler(async (req, res) => {
+  const products = await prisma.product.findMany()
+  if (products) {
+    const slugs = products.map(product => product.id)
+		res.json(slugs);
+	} else {
+		res.status(404);
+		throw new Error('Product slugs not found');
+	}
+})

@@ -14,7 +14,7 @@ app.use(cors())
 
 
 import { PrismaClient } from '@prisma/client'
-import { getProductsById } from './prisma/controllers/products'
+import { getCategoryById, getCategorySlugs, getProductsById, getProductSlugs } from './prisma/controllers/products'
 
 
 const prisma = new PrismaClient()
@@ -180,7 +180,12 @@ app.get('/', (req, res) => {
 	}
 })
 
-app.get('/products/:id', getProductsById)
+//ROUTES for reading product data
+
+app.get('/product/slugs', getProductSlugs)
+app.get('/category/slugs', getCategorySlugs)
+app.get('/product/:id', getProductsById)
+app.get('/category/:id', getCategoryById)
 
 const PORT = process.env.PORT || 5000
 
