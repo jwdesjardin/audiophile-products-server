@@ -46,7 +46,6 @@ model Category {
   updatedAt DateTime  @updatedAt
   name      String    @db.VarChar(255)
   slug      String    @unique
-  image     String    @db.VarChar(255)
   Product   Product[]
 }
 
